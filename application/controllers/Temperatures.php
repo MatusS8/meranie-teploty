@@ -45,8 +45,8 @@ class Temperatures extends CI_Controller {
 
         //kontrola, ci bolo zaslane id riadka
         if(!empty($id)){
-            $data['temperatures'] = $this->temperatures->getRows($id);
-            $data['title'] = $data['temperatures']['title'];
+            $data['temperatures'] = $this->Temperatures_model->getRows($id);
+            $data['title'] = $data['temperatures']['measurement_date'];
 
             //nahratie detailu zaznamu
             $this->load->view('templates/header', $data);
