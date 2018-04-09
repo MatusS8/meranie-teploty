@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="panel panel-default">
-            <div class="panel-heading">Post Details <a href="<?php echo site_url('temperatures/'); ?>" class="glyphicon glyphicon-arrow-left pull-right"></a></div>
+            <div class="panel-heading">Temperature Details <a href="<?php echo site_url('temperatures/'); ?>" class="glyphicon glyphicon-arrow-left pull-right"></a></div>
             <div class="panel-body">
                 <div class="form-group">
                     <label>Date:</label>
