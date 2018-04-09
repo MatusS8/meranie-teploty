@@ -1,4 +1,5 @@
 <div class="container">
+    <div class="row"><br></div>
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">Temperature Details <a href="<?php echo site_url('temperatures/'); ?>" class="glyphicon glyphicon-arrow-left pull-right"></a></div>

@@ -1,4 +1,5 @@
 <div class="container">
+    <div class="row"><br></div>
     <div class="col-xs-12">
         <?php
         if(!empty($success_msg)){
