@@ -108,7 +108,7 @@ class Temperatures extends CI_Controller {
         $data = array();
 
         //ziskanie dat z tabulky
-        $postData = $this->temperatures->getRows($id);
+        $postData = $this->Temperatures_model->getRows($id);
 
         //zistenie, ci bola zaslana poziadavka na aktualizaciu
         if($this->input->post('postSubmit')){
@@ -130,11 +130,11 @@ class Temperatures extends CI_Controller {
             //validacia zaslanych dat
             if($this->form_validation->run() == true){
                 //aktualizacia dat
-                $update = $this->temperatures->update($postData, $id);
+                $update = $this->Temperatures_model->update($postData, $id);
 
                 if($update){
                     $this->session->set_userdata('success_msg', 'Temperature has been updated successfully.');
-                    redirect('/posts');
+                    redirect('/temperatures');
                 }else{
                     $data['error_msg'] = 'Some problems occurred, please try again.';
                 }
@@ -157,7 +157,7 @@ class Temperatures extends CI_Controller {
         //overenie, ci id nie je prazdne
         if($id){
             //odstranenie zaznamu
-            $delete = $this->temperatures->delete($id);
+            $delete = $this->Temperatures_model->delete($id);
 
             if($delete){
                 $this->session->set_userdata('success_msg', 'Temperature has been removed successfully.');
