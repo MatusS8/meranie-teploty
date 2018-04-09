@@ -1,12 +1,12 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Created by PhpStorm.
  * User: Martin
  * Date: 9. 4. 2018
  * Time: 19:08
  */
-<?php
-class Temperature_model extends CI_Model {
+
+class Temperatures_model extends CI_Model {
 
     public function __construct()
     {

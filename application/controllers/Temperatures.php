@@ -30,7 +30,7 @@ class Temperatures extends CI_Controller {
             $this->session->unset_userdata('error_msg');
         }
 
-        $data['temperatures'] = $this->temperatures->getRows();
+        $data['temperatures'] = $this->Temperatures_model->getRows();
         $data['title'] = 'Temperature List';
 
         //nahratie zoznamu teplot
