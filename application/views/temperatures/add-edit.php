@@ -36,7 +36,7 @@
                         </div>
                         <div class="form-group">
                             <label for="content">Description</label>
-                            <textarea name="temperature" class="form-control" placeholder="Enter description"><?php echo !empty($post['description'])?$post['description']:''; ?></textarea>
+                            <textarea name="description" class="form-control" placeholder="Enter description"><?php echo !empty($post['description'])?$post['description']:''; ?></textarea>
                             <?php echo form_error('description','<p class="text-danger">','</p>'); ?>
                         </div>
                         <input type="submit" name="postSubmit" class="btn btn-primary" value="Submit"/>

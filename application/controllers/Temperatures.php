@@ -66,7 +66,7 @@ class Temperatures extends CI_Controller {
         if($this->input->post('postSubmit')){
             //definicia pravidiel validacie
             $this->form_validation->set_rules('measurement_date', 'date of measurement', 'required');
-            $this->form_validation->set_rules('temperature', 'temperature value', 'required');
+            $this->form_validation->set_rules('temperature', 'temperature', 'required');
             $this->form_validation->set_rules('sky', 'sky value', 'required');
             $this->form_validation->set_rules('user', 'user id', 'required');
 
@@ -82,7 +82,7 @@ class Temperatures extends CI_Controller {
             //validacia zaslanych dat
             if($this->form_validation->run() == true){
                 //vlozenie dat
-                $insert = $this->post->insert($postData);
+                $insert = $this->Temperatures_model->insert($postData);
 
                 if($insert){
                     $this->session->set_userdata('success_msg', 'Temperature has been added successfully.');
