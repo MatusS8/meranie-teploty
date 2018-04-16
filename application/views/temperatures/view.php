@@ -18,7 +18,7 @@
                 </div>
                 <div class="form-group">
                     <label>User:</label>
-                    <p><?php echo !empty($temperatures['user'])?$temperatures['user']:''; ?></p>
+                    <p><?php echo !empty($temperatures['fullname'])?$temperatures['fullname']:''; ?></p>
                 </div>
                 <div class="form-group">
                     <label>Description:</label>

@@ -36,6 +36,10 @@
                             <?php echo form_error('user','<p class="help-block text-danger">','</p>'); ?>
                         </div>
                         <div class="form-group">
+                            <?php echo form_label('User'); ?>
+                            <?php echo form_dropdown('user', $users, $users_selected, 'class="form-control"'); ?>
+                        </div>
+                        <div class="form-group">
                             <label for="content">Description</label>
                             <textarea name="description" class="form-control" placeholder="Enter description"><?php echo !empty($post['description'])?$post['description']:''; ?></textarea>
                             <?php echo form_error('description','<p class="text-danger">','</p>'); ?>

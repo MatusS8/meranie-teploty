@@ -15,9 +15,13 @@ class Temperatures_model extends CI_Model {
     // vrati zoznam teplot
     function getRows($id= "") {
         if(!empty($id)){
-            $query = $this->db->get_where('temperatures', array('id' => $id));
+            $this->db->select('temperatures.id, measurement_date, temperature, sky, user, CONCAT(firstname," ", lastname) as fullname, description')
+                ->join('users','temperatures.user = users.id');
+            $query = $this->db->get_where('temperatures', array('temperatures.id' => $id));
             return $query->row_array();
         }else{
+            $this->db->select('temperatures.id, measurement_date, temperature, sky, user, CONCAT(firstname," ", lastname) as fullname, description')
+                ->join('users','temperatures.user = users.id');
             $query = $this->db->get('temperatures');
             return $query->result_array();
         }
@@ -47,6 +51,22 @@ class Temperatures_model extends CI_Model {
     public function delete($id){
         $delete = $this->db->delete('temperatures',array('id'=>$id));
         return $delete?true:false;
+    }
+
+    public function get_users_dropdown($id = ""){
+        $this->db->order_by('lastname')
+            ->select('id, CONCAT(lastname," ", firstname) AS fullname')
+            ->from('users');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            $dropdowns = $query->result();
+            foreach ($dropdowns as $dropdown)
+            {
+                $dropdownlist[$dropdown->id] = $dropdown->fullname;
+            }
+            $dropdownlist[''] = 'Select a user ... ';
+            return $dropdownlist;
+        }
     }
 }
 ?>

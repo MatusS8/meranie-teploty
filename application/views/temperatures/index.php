@@ -33,7 +33,7 @@
                             <td><?php echo $temperature['measurement_date']; ?></td>
                             <td><?php echo $temperature['temperature']; ?></td>
                             <td><?php echo $temperature['sky'];?></td>
-                            <td><?php echo $temperature['user'];?></td>
+                            <td><?php echo $temperature['fullname'];?></td>
                             <td>
                                 <a href="<?php echo site_url('temperatures/view/'.$temperature['id']); ?>" class="glyphicon glyphicon-eye-open"></a>
                                 <a href="<?php echo site_url('temperatures/edit/'.$temperature['id']); ?>" class="glyphicon glyphicon-edit"></a>

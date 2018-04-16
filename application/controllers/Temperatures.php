@@ -11,11 +11,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Temperatures extends CI_Controller {
 
     function __construct() {
-        parent::__construct();
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-        $this->load->model('Temperatures_model');
-    }
+    parent::__construct();
+    $this->load->helper('form');
+    $this->load->library('form_validation');
+    $this->load->model('Temperatures_model');
+}
 
     public function index(){
         $data = array();
@@ -92,7 +92,8 @@ class Temperatures extends CI_Controller {
                 }
             }
         }
-
+        $data['users'] = $this->Temperatures_model->get_users_dropdown();
+        $data['users_selected'] = '';
         $data['post'] = $postData;
         $data['title'] = 'Create Temperature';
         $data['action'] = 'Add';
@@ -141,7 +142,8 @@ class Temperatures extends CI_Controller {
             }
         }
 
-
+        $data['users'] = $this->Temperatures_model->get_users_dropdown();
+        $data['users_selected'] = $postData['user'];
         $data['post'] = $postData;
         $data['title'] = 'Update Temperature';
         $data['action'] = 'Edit';
