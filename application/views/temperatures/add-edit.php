@@ -17,7 +17,7 @@
                     <form method="post" action="" class="form">
                         <div class="form-group">
                             <label for="title">Date</label>
-                            <input type="text" class="form-control" name="measurement_date" placeholder="Enter date" value="<?php echo !empty($post['measurement_date'])?$post['measurement_date']:''; ?>">
+                            <input type="text" class="form-control" name="measurement_date" id="measurement_date" placeholder="Enter date" value="<?php echo !empty($post['measurement_date'])?$post['measurement_date']:''; ?>">
                             <?php echo form_error('measurement_date','<p class="help-block text-danger">','</p>'); ?>
                         </div>
                         <div class="form-group">

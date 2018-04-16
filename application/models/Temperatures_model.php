@@ -68,5 +68,21 @@ class Temperatures_model extends CI_Model {
             return $dropdownlist;
         }
     }
+
+    public function fetch_data($limit,$start) {
+        $this->db->limit($limit,$start);
+        $query = $this->db->get("temperatures");
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
+
+    public function record_count (){
+        return $this->db->count_all("temperatures");
+    }
 }
 ?>

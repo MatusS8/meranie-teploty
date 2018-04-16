@@ -15,6 +15,8 @@ class Temperatures extends CI_Controller {
     $this->load->helper('form');
     $this->load->library('form_validation');
     $this->load->model('Temperatures_model');
+
+    $this->load->library('pagination');
 }
 
     public function index(){
@@ -36,6 +38,51 @@ class Temperatures extends CI_Controller {
         //nahratie zoznamu teplot
         $this->load->view('templates/header', $data);
         $this->load->view('temperatures/index', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function index_pagination(){
+        $data = array();
+
+        //ziskanie sprav zo session
+        if($this->session->userdata('success_msg')){
+            $data['success_msg'] = $this->session->userdata('success_msg');
+            $this->session->unset_userdata('success_msg');
+        }
+        if($this->session->userdata('error_msg')){
+            $data['error_msg'] = $this->session->userdata('error_msg');
+            $this->session->unset_userdata('error_msg');
+        }
+
+        $config = array();
+        $config["base_url"] = base_url() . "index.php/temperatures/index_pagination";
+        $config["total_rows"] = $this->Temperatures_model->record_count();
+        $config["per_page"] = 5;
+        $config["uri_segment"] = 3;
+      //  $config['use_page_numbers'] = TRUE;
+        //$config['num_links'] = $this->Temperatures_model->record_count();
+        $config['cur_tag_open'] = '&nbsp;<a class="page-link">';
+        $config['cur_tag_close'] = '</a>';
+        $config['next_link'] = 'Next';
+        $config['prev_link'] = 'Previous';
+
+        $this->pagination->initialize($config);
+        if($this->uri->segment(3)){
+            $page = ($this->uri->segment(3)) ;
+        }
+        else{
+            $page = 0;
+        }
+        $data["temperatures"] = $this->Temperatures_model->fetch_data($config["per_page"], $page);
+        $str_links = $this->pagination->create_links();
+        $data["links"] = explode('&nbsp;',$str_links );
+
+       // $data['temperatures'] = $this->Temperatures_model->getRows();
+        $data['title'] = 'Temperature List';
+
+        //nahratie zoznamu teplot
+        $this->load->view('templates/header', $data);
+        $this->load->view('temperatures/index_pagination', $data);
         $this->load->view('templates/footer');
     }
 
@@ -107,7 +154,6 @@ class Temperatures extends CI_Controller {
     // aktualizacia dat
     public function edit($id){
         $data = array();
-
         //ziskanie dat z tabulky
         $postData = $this->Temperatures_model->getRows($id);
 
