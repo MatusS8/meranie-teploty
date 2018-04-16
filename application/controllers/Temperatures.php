@@ -77,6 +77,9 @@ class Temperatures extends CI_Controller {
         $str_links = $this->pagination->create_links();
         $data["links"] = explode('&nbsp;',$str_links );
 
+        $data['records_per_user'] = $this->Temperatures_model->record_count_per_user();
+        $data['json_records_per_user'] = json_encode($this->Temperatures_model->record_count_per_user_array());
+
        // $data['temperatures'] = $this->Temperatures_model->getRows();
         $data['title'] = 'Temperature List';
 
@@ -85,6 +88,41 @@ class Temperatures extends CI_Controller {
         $this->load->view('temperatures/index_pagination', $data);
         $this->load->view('templates/footer');
     }
+
+    public function json_records_per_user() {
+        $data = $this->Temperatures_model->record_count_per_user_array();
+
+        //         //data to json
+       // $responce = nil;
+        $responce->cols[] = array(
+            "id" => "",
+            "label" => "User",
+            "pattern" => "",
+            "type" => "string"
+        );
+        $responce->cols[] = array(
+            "id" => "",
+            "label" => "Counts",
+            "pattern" => "",
+            "type" => "number"
+        );
+        foreach($data as $row)
+        {
+            $responce->rows[]["c"] = array(
+                array(
+                    "v" => $row['user'],
+                    "f" => null
+                ) ,
+                array(
+                    "v" => (int)$row['counts'],
+                    "f" => null
+                )
+            );
+        }
+
+        echo json_encode($responce);
+    }
+
 
     // Zobrazenie detailu o teplote
     public function view($id){

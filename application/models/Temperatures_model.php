@@ -84,5 +84,22 @@ class Temperatures_model extends CI_Model {
     public function record_count (){
         return $this->db->count_all("temperatures");
     }
+
+    public function record_count_per_user() {
+         $this->db->select('CONCAT(lastname," ", firstname) AS user, COUNT(temperatures.id) AS counts');
+         $this->db->from('temperatures');
+         $this->db->join('users','temperatures.user = users.id');
+         $this->db->group_by('temperatures.user');
+         return $this->db->get();
+    }
+
+    public function record_count_per_user_array() {
+        $this->db->select('CONCAT(lastname," ", firstname) AS user, COUNT(temperatures.id) AS counts');
+        $this->db->from('temperatures');
+        $this->db->join('users','temperatures.user = users.id');
+        $this->db->group_by('temperatures.user');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
 ?>

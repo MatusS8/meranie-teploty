@@ -33,7 +33,7 @@
                             <td><?php echo $temperature->measurement_date; ?></td>
                             <td><?php echo $temperature->temperature; ?></td>
                             <td><?php echo $temperature->sky;?></td>
-                            <td><?php echo $temperature->id;?></td>
+                            <td><?php echo $temperature->user;?></td>
                             <td>
                                 <a href="<?php echo site_url('temperatures/view/'.$temperature->id); ?>" class="glyphicon glyphicon-eye-open"></a>
                                 <a href="<?php echo site_url('temperatures/edit/'.$temperature->id); ?>" class="glyphicon glyphicon-edit"></a>
@@ -52,6 +52,36 @@
                     <?php foreach ($links as $link) {
                         echo "<li class=\"page-item\">". $link."</li>";
                     } ?>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="panel panel-default ">
+                <div class="panel-heading">Records per user</div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Count</th>
+                    </tr>
+                    </thead>
+                    <tbody id="userData">
+            <?php foreach($records_per_user->result() as $row):;?>
+            <tr>
+                <td><?php echo $row->user;?></td>
+                <td><?php echo $row->counts;?></td>
+            </tr>
+            <?php endforeach;?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="panel panel-default ">
+                <div class="panel-heading">Records per user - chart</div>
+                <p><?php //echo $json_records_per_user;?></p>
+                <div id="chart_div"></div>
             </div>
         </div>
     </div>
