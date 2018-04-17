@@ -52,7 +52,7 @@ class Temperatures_model extends CI_Model {
         $delete = $this->db->delete('temperatures',array('id'=>$id));
         return $delete?true:false;
     }
-
+    //  naplnenie selectu z tabulky users
     public function get_users_dropdown($id = ""){
         $this->db->order_by('lastname')
             ->select('id, CONCAT(lastname," ", firstname) AS fullname')
@@ -68,7 +68,7 @@ class Temperatures_model extends CI_Model {
             return $dropdownlist;
         }
     }
-
+    // strankovanie tabulky na temperatures/index_pagination
     public function fetch_data($limit,$start) {
         $this->db->limit($limit,$start);
         $query = $this->db->get("temperatures");
@@ -80,11 +80,11 @@ class Temperatures_model extends CI_Model {
         }
         return false;
     }
-
+    // pocet vsetky zaznamov pre strankovanie
     public function record_count (){
         return $this->db->count_all("temperatures");
     }
-
+    //ukazka group by pre tabulku, vystup je objekt
     public function record_count_per_user() {
          $this->db->select('CONCAT(lastname," ", firstname) AS user, COUNT(temperatures.id) AS counts');
          $this->db->from('temperatures');
@@ -92,7 +92,7 @@ class Temperatures_model extends CI_Model {
          $this->db->group_by('temperatures.user');
          return $this->db->get();
     }
-
+    //ukazka group_by pre tabulku a graf, vystup je pole
     public function record_count_per_user_array() {
         $this->db->select('CONCAT(lastname," ", firstname) AS user, COUNT(temperatures.id) AS counts');
         $this->db->from('temperatures');

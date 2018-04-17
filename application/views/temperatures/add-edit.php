@@ -30,11 +30,7 @@
                             <input type="text" class="form-control" name="sky" placeholder="Enter sky" value="<?php echo !empty($post['sky'])?$post['sky']:''; ?>">
                             <?php echo form_error('sky','<p class="help-block text-danger">','</p>'); ?>
                         </div>
-                        <div class="form-group">
-                            <label for="title">User</label>
-                            <input type="text" class="form-control" name="user" placeholder="Enter user" value="<?php echo !empty($post['user'])?$post['user']:''; ?>">
-                            <?php echo form_error('user','<p class="help-block text-danger">','</p>'); ?>
-                        </div>
+
                         <div class="form-group">
                             <?php echo form_label('User'); ?>
                             <?php echo form_dropdown('user', $users, $users_selected, 'class="form-control"'); ?>
